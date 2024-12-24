@@ -10,7 +10,7 @@ export default function ElevateAppBar() {
       <CssBaseline />
       <AppBar
         sx={{
-          backgroundColor: "rgba(85, 194, 221, 0.9)", // שקיפות קלה
+          backgroundColor: "#000000", // שקיפות קלה
           position: "fixed", // הסרגל יישאר קבוע למעלה
           top: 0, // למנוע מהמיקום להתעדכן בעת גלילה
           left: 0,
@@ -29,7 +29,7 @@ export default function ElevateAppBar() {
             variant="h6"
             component="div"
             sx={{
-              color: "black",
+              color: "white",
               fontSize: "2.50vh",
             }}
           >

@@ -1,8 +1,28 @@
+body {
+  background-image: url("https://did.li/attack1"); /* הכנס את הנתיב לתמונה שלך */
+  background-size: cover; /* התמונה תכסה את כל המסך */
+  background-position: center; /* מיקום התמונה במרכז */
+  background-attachment: fixed; /* התמונה תישאר קבועה בזמן גלילה */
+  position: relative;
+}
+
 .chartWrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
+  position: relative;
+}
+
+.chartWrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* background: rgba(255, 255, 255, 0.1); רקע עם שקיפות נמוכה (0.1) */
+  z-index: -1;
 }
 
 .chartContainer {
