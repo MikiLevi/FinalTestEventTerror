@@ -5,8 +5,10 @@ import Typography from "@mui/material/Typography";
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import { useNavigate } from "react-router-dom";
 
 export default function ElevateAppBar() {
+  const navigat = useNavigate();
   return (
     <React.Fragment>
       <CssBaseline />
@@ -37,15 +39,13 @@ export default function ElevateAppBar() {
           >
             Managing Terrorist Incidents🕊️
           </Typography>
-          
-          {/* תוסף כאן כפתור או אלמנטים נוספים */}
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Button color="inherit">Contact</Button>
-            <Button color="inherit">About</Button>
+
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <Button onClick={()=> navigat("/map")} color="inherit">About</Button>
           </Box>
         </Toolbar>
       </AppBar>
-      <Toolbar /> {/* יוסיף ריווח מתחת לכותרת */}
+      <Toolbar />
     </React.Fragment>
   );
 }
