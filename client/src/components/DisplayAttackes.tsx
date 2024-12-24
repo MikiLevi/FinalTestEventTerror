@@ -10,7 +10,7 @@ import {
 import { Bar } from "react-chartjs-2";
 import styles from "../styles/DisplayAttackes.module.css";
 import { AttackData } from "../interface/Eevent";
-import ElevateAppBar from "./AppBr";
+import ElevateAppBar from "./app/AppBr";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip);
 

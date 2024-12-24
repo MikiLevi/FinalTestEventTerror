@@ -1,6 +1,6 @@
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import ElevateAppBar from "./AppBr";
+import ElevateAppBar from "./app/AppBr";
 
 export const MyMap = () => {
   return (
