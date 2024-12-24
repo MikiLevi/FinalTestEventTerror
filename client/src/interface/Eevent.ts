@@ -31,3 +31,10 @@ export interface casualty {
   _id: string;
   region_txt: IEvent;
 }
+
+export interface TimeData {
+  year: number;
+  month: number;
+  totalKills: number;
+  totalEvents: number;
+}
