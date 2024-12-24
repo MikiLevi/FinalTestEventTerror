@@ -8,25 +8,25 @@ import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 
 export default function ElevateAppBar() {
-  const navigat = useNavigate();
+  const navigate = useNavigate();
   return (
     <React.Fragment>
       <CssBaseline />
       <AppBar
         sx={{
-          backgroundColor: "#000000", // שקיפות קלה
-          position: "fixed", // הסרגל יישאר קבוע למעלה
-          top: 0, // למנוע מהמיקום להתעדכן בעת גלילה
+          backgroundColor: "#000000",
+          position: "fixed",
+          top: 0,
           left: 0,
           right: 0,
-          zIndex: 1200, // לוודא שהסרגל תמיד יישאר מעל
+          zIndex: 1200,
         }}
       >
         <Toolbar
           sx={{
             display: "flex",
-            justifyContent: "space-between", // יפזר את התוכן מצדדים
-            alignItems: "center", // מרכז את התוכן אנכית
+            justifyContent: "space-between",
+            alignItems: "center",
           }}
         >
           <Typography
@@ -41,7 +41,21 @@ export default function ElevateAppBar() {
           </Typography>
 
           <Box sx={{ display: "flex", alignItems: "center" }}>
-            <Button onClick={()=> navigat("/map")} color="inherit">About</Button>
+            <Button onClick={() => navigate("/home")} color="inherit">
+              Home
+            </Button>
+            <Button onClick={() => navigate("/attack")} color="inherit">
+              Attack
+            </Button>
+            <Button onClick={() => navigate("/map")} color="inherit">
+              Map
+            </Button>
+            <Button onClick={() => navigate("/time")} color="inherit">
+              Time
+            </Button>
+            <Button onClick={() => navigate("/org")} color="inherit">
+              Organization
+            </Button>
           </Box>
         </Toolbar>
       </AppBar>

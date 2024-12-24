@@ -13,6 +13,7 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import styles from "./DisplayOrganizations.module.css";
 import { OrganizationData, RegionData } from "../../interface/Eevent";
+import ElevateAppBar from "../app/AppBr";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip);
 
@@ -145,71 +146,74 @@ const DisplayOrganizations: React.FC = () => {
   };
 
   return (
-    <div className={styles.mainContainer}>
-      <div className={styles.chartSection}>
-        <div className={styles.filters}>
-          <select
-            className={styles.select}
-            value={selectedRegion}
-            onChange={(e) => setSelectedRegion(e.target.value)}
-          >
-            <option value="All">All Regions</option>
-            {regionsData.map((region) => (
-              <option key={region.region} value={region.region}>
-                {region.region}
-              </option>
-            ))}
-          </select>
-          <label className={styles.checkbox}>
-            <input
-              type="checkbox"
-              checked={showAll}
-              onChange={(e) => setShowAll(e.target.checked)}
-            />
-            Show all organizations
-          </label>
+    <>
+      <ElevateAppBar />
+      <div className={styles.mainContainer}>
+        <div className={styles.chartSection}>
+          <div className={styles.filters}>
+            <select
+              className={styles.select}
+              value={selectedRegion}
+              onChange={(e) => setSelectedRegion(e.target.value)}
+            >
+              <option value="All">All Regions</option>
+              {regionsData.map((region) => (
+                <option key={region.region} value={region.region}>
+                  {region.region}
+                </option>
+              ))}
+            </select>
+            <label className={styles.checkbox}>
+              <input
+                type="checkbox"
+                checked={showAll}
+                onChange={(e) => setShowAll(e.target.checked)}
+              />
+              Show all organizations
+            </label>
+          </div>
+
+          {error && <div className="text-red-500 my-2">{error}</div>}
+
+          {orgData.length > 0 ? (
+            <div className={styles.chart}>
+              <Bar options={chartOptions} data={chartData} />
+            </div>
+          ) : (
+            <div>No data available for the selected region</div>
+          )}
         </div>
 
-        {error && <div className="text-red-500 my-2">{error}</div>}
-
-        {orgData.length > 0 ? (
-          <div className={styles.chart}>
-            <Bar options={chartOptions} data={chartData} />
+        {regionsData.length > 0 && (
+          <div className={styles.mapSection}>
+            <MapContainer
+              center={[20, 0]}
+              zoom={2}
+              style={{ height: "400px", width: "100%" }}
+            >
+              <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+              {regionsData.map((region, index) => (
+                <Marker
+                  key={`${region.region}-${index}`}
+                  position={[region.lat, region.long]}
+                  icon={icon}
+                  eventHandlers={{
+                    click: () => handleMarkerClick(region.region),
+                  }}
+                >
+                  <Popup>
+                    <div>
+                      <h3>{region.region}</h3>
+                      <p>Click to see top organizations</p>
+                    </div>
+                  </Popup>
+                </Marker>
+              ))}
+            </MapContainer>
           </div>
-        ) : (
-          <div>No data available for the selected region</div>
         )}
       </div>
-
-      {regionsData.length > 0 && (
-        <div className={styles.mapSection}>
-          <MapContainer
-            center={[20, 0]}
-            zoom={2}
-            style={{ height: "400px", width: "100%" }}
-          >
-            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-            {regionsData.map((region, index) => (
-              <Marker
-                key={`${region.region}-${index}`}
-                position={[region.lat, region.long]}
-                icon={icon}
-                eventHandlers={{
-                  click: () => handleMarkerClick(region.region),
-                }}
-              >
-                <Popup>
-                  <div>
-                    <h3>{region.region}</h3>
-                    <p>Click to see top organizations</p>
-                  </div>
-                </Popup>
-              </Marker>
-            ))}
-          </MapContainer>
-        </div>
-      )}
-    </div>
+    </>
   );
 };
 

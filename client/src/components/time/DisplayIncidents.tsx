@@ -9,6 +9,7 @@ import {
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import style from "./DisplayTime.module.css";
+import ElevateAppBar from "../app/AppBr";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip);
 
@@ -88,51 +89,54 @@ const DisplayTime = () => {
   };
 
   return (
-    <div className={style.container}>
-      <div className={style.filtersContainer}>
-        <select
-          className={style.select}
-          value={selectedFilter}
-          onChange={(e) => setSelectedFilter(e.target.value)}
-        >
-          <option value="specific">Specific Year</option>
-          <option value="range">Year Range</option>
-          <option value="last5">Last 5 Years</option>
-          <option value="last10">Last 10 Years</option>
-        </select>
+    <>
+      <ElevateAppBar />
+      <div className={style.container}>
+        <div className={style.filtersContainer}>
+          <select
+            className={style.select}
+            value={selectedFilter}
+            onChange={(e) => setSelectedFilter(e.target.value)}
+          >
+            <option value="specific">Specific Year</option>
+            <option value="range">Year Range</option>
+            <option value="last5">Last 5 Years</option>
+            <option value="last10">Last 10 Years</option>
+          </select>
 
-        {selectedFilter === "specific" && (
-          <input
-            className={style.input}
-            type="number"
-            value={selectedYear}
-            onChange={(e) => setSelectedYear(Number(e.target.value))}
-            placeholder="Year"
-          />
-        )}
-        {selectedFilter === "range" && (
-          <>
+          {selectedFilter === "specific" && (
             <input
               className={style.input}
               type="number"
-              value={startYear}
-              onChange={(e) => setStartYear(Number(e.target.value))}
-              placeholder="Start Year"
+              value={selectedYear}
+              onChange={(e) => setSelectedYear(Number(e.target.value))}
+              placeholder="Year"
             />
-            <input
-              className={style.input}
-              type="number"
-              value={endYear}
-              onChange={(e) => setEndYear(Number(e.target.value))}
-              placeholder="End Year"
-            />
-          </>
-        )}
+          )}
+          {selectedFilter === "range" && (
+            <>
+              <input
+                className={style.input}
+                type="number"
+                value={startYear}
+                onChange={(e) => setStartYear(Number(e.target.value))}
+                placeholder="Start Year"
+              />
+              <input
+                className={style.input}
+                type="number"
+                value={endYear}
+                onChange={(e) => setEndYear(Number(e.target.value))}
+                placeholder="End Year"
+              />
+            </>
+          )}
+        </div>
+        <div className={style.chartContainer}>
+          <Bar options={options} data={data} />
+        </div>
       </div>
-      <div className={style.chartContainer}>
-        <Bar options={options} data={data} />
-      </div>
-    </div>
+    </>
   );
 };
 

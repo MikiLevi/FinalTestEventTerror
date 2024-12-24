@@ -23,15 +23,13 @@ const MapComponent: React.FC = () => {
         const response = await fetch(
           "https://testeventterror.onrender.com/api/analysis/highest-casualty-regions/"
         );
-        console.log(response);
-
         const data = await response.json();
         const validData = data.filter(
           (item: RegionData) => item.lat && item.long
         );
 
-        // חותך את המערך כדי להציג רק 50 מיקומים
-        const limitedData = validData.slice(0, 500); // מקבל רק את 50 המיקומים הראשונים
+        // חותך את המערך כדי להציג רק 500 מיקומים
+        const limitedData = validData.slice(0, 500);
         setRegionsData(limitedData);
       } catch (error) {
         console.error("Error:", error);
@@ -57,8 +55,8 @@ const MapComponent: React.FC = () => {
         `}
       </style>
       <MapContainer
-        center={[1.3521, 103.8198]}  // סינגפור (East Asia)
-        zoom={6}  // זום יותר רחוק לאזור אסיה המזרחית
+        center={[1.3521, 103.8198]} // סינגפור (East Asia)
+        zoom={6} // זום יותר רחוק לאזור אסיה המזרחית
         style={{ width: "100%", height: "100%" }}
       >
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
