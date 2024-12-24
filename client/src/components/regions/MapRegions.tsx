@@ -3,6 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import ElevateAppBar from "../app/AppBr";
+import { RegionData } from "../../interface/Eevent";
 
 const icon = L.icon({
   iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
@@ -13,13 +14,6 @@ const icon = L.icon({
   shadowSize: [41, 41],
 });
 
-interface RegionData {
-  region: string;
-  count: number;
-  lat: number;
-  long: number;
-}
-
 const MapComponent: React.FC = () => {
   const [regionsData, setRegionsData] = useState<RegionData[]>([]);
 
@@ -29,11 +23,9 @@ const MapComponent: React.FC = () => {
         const response = await fetch(
           "https://testeventterror.onrender.com/api/analysis/highest-casualty-regions/"
         );
-
+        console.log(response);
+        
         const data = await response.json();
-        console.table(data);
-				console.log(regionsData);
-				
         const validData = data.filter(
           (item: RegionData) => item.lat && item.long
         );
