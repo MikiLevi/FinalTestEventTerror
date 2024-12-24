@@ -83,8 +83,8 @@ const TerrorOrgByYear = async (req: Request, res: Response) => {
 
 const DeadliestRegionsByGroup = async (req: Request, res: Response) => {
   try {
-    const nameGroup = req.query.nameGroup as string;
-    const TerrorEvents = await getDeadliestRegionsByGroup(nameGroup);
+    const groupName = req.query.groupName as string;
+    const TerrorEvents = await getDeadliestRegionsByGroup(groupName);
     if (!TerrorEvents) {
       res.status(404).json({ msg: "Terror Events not found" });
       return;
