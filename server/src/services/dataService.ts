@@ -2,7 +2,7 @@ import Terror, { ITerror } from "../models/terror";
 import { handleBadRequest } from "../../utils/ErrorHandle";
 import { dateToSearchDTO } from "../interface/dateToSearchDTO";
 
-const getDeadliestTerrorism = async () => {
+export const getDeadliestTerrorism = async () => {
   try {
     const Terrorism = await Terror.aggregate([
       {
@@ -24,7 +24,7 @@ const getDeadliestTerrorism = async () => {
   }
 };
 
-const getHighCasualtyArea = async () => {
+export const getHighCasualtyArea = async () => {
   try {
     const Terrorism = await Terror.aggregate([
       {
@@ -58,7 +58,7 @@ const getHighCasualtyArea = async () => {
   }
 };
 
-const getIncidentByDate = async (dateToSearch: dateToSearchDTO) => {
+export const getIncidentByDate = async (dateToSearch: dateToSearchDTO) => {
   try {
     const Terrorism = await Terror.aggregate([
       {
@@ -83,7 +83,7 @@ const getIncidentByDate = async (dateToSearch: dateToSearchDTO) => {
   }
 };
 
-const getTerrorOrgByRegions = async (
+export const getTerrorOrgByRegions = async (
   regionName: string,
   limit: number
 ): Promise<ITerror[] | null> => {
@@ -110,7 +110,9 @@ const getTerrorOrgByRegions = async (
   }
 };
 
-const getTerrorOrgByYear = async (year: number): Promise<ITerror[] | null> => {
+export const getTerrorOrgByYear = async (
+  year: number
+): Promise<ITerror[] | null> => {
   try {
     return await Terror.aggregate([
       {
@@ -131,7 +133,7 @@ const getTerrorOrgByYear = async (year: number): Promise<ITerror[] | null> => {
   }
 };
 
-const getDeadliestRegionsByGroup = async (nameGroup: string) => {
+export const getDeadliestRegionsByGroup = async (nameGroup: string) => {
   try {
     const result = await Terror.aggregate([
       {
@@ -168,13 +170,4 @@ const getDeadliestRegionsByGroup = async (nameGroup: string) => {
     console.error("Error during aggregation:", error);
     return [];
   }
-};
-
-export {
-  getDeadliestTerrorism,
-  getHighCasualtyArea,
-  getIncidentByDate,
-  getTerrorOrgByRegions,
-  getTerrorOrgByYear,
-  getDeadliestRegionsByGroup,
 };
