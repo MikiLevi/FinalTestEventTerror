@@ -3,6 +3,8 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import CssBaseline from "@mui/material/CssBaseline";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 
 export default function ElevateAppBar() {
   return (
@@ -21,7 +23,7 @@ export default function ElevateAppBar() {
         <Toolbar
           sx={{
             display: "flex",
-            justifyContent: "center", // מרכז את התוכן אופקית
+            justifyContent: "space-between", // יפזר את התוכן מצדדים
             alignItems: "center", // מרכז את התוכן אנכית
           }}
         >
@@ -35,6 +37,12 @@ export default function ElevateAppBar() {
           >
             Managing Terrorist Incidents🕊️
           </Typography>
+          
+          {/* תוסף כאן כפתור או אלמנטים נוספים */}
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <Button color="inherit">Contact</Button>
+            <Button color="inherit">About</Button>
+          </Box>
         </Toolbar>
       </AppBar>
       <Toolbar /> {/* יוסיף ריווח מתחת לכותרת */}
