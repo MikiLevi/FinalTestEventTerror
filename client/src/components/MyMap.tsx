@@ -12,9 +12,10 @@ export const MyMap = () => {
       }}
     >
       <ElevateAppBar />
-      <div style={{ flex: 1 }}> {/* זה יגרום למפה להימתח לכל השטח הנותר */}
+      <div style={{ flex: 1 }}>
+        {/* זה יגרום למפה להימתח לכל השטח הנותר */}
         <MapContainer
-          center={[51.505, -0.09]}
+          center={[33.891813, 35.503473]}
           zoom={5}
           scrollWheelZoom={true}
           style={{ height: "100%", width: "100%" }}
@@ -23,7 +24,7 @@ export const MyMap = () => {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          <Marker position={[51.505, -0.09]}>
+          <Marker position={[33.891813, 35.503473]}>
             <Popup>
               A pretty CSS3 popup. <br /> Easily customizable.
             </Popup>
