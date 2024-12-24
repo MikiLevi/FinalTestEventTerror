@@ -1,5 +1,4 @@
 import { Schema } from "mongoose";
-
 export interface IEvent {
   _id: Schema.Types.ObjectId;
   eventid: number;
@@ -21,20 +20,27 @@ export interface IEvent {
   ransomamt: number;
   summary: string;
 }
-
 export interface AttackData {
   _id: string;
   total: number;
 }
-
 export interface casualty {
   _id: string;
   region_txt: IEvent;
 }
-
 export interface TimeData {
   year: number;
   month: number;
   totalKills: number;
   totalEvents: number;
+}
+export interface OrganizationData {
+  _id: string;
+  total: number;
+}
+export interface RegionData {
+  region: string;
+  count: number;
+  lat: number;
+  long: number;
 }
