@@ -1,6 +1,7 @@
 import Terror, { ITerror } from "../models/terror";
 import { handleBadRequest } from "../../utils/ErrorHandle";
 import { dateToSearchDTO } from "../interface/dateToSearchDTO";
+import mongoose from "mongoose";
 
 export const getDeadliestTerrorism = async () => {
   try {
@@ -175,5 +176,36 @@ export const getDeadliestRegionsByGroup = async (nameGroup: string) => {
   } catch (error) {
     console.error("Error during aggregation:", error);
     return [];
+  }
+};
+
+export const addTerrorEventService = async (
+  newTerrorEvent: Partial<ITerror>
+): Promise<Partial<ITerror>> => {
+  try {
+    const nTerrorEvent = new Terror({
+      _id: new mongoose.Types.ObjectId(),
+      eventid: newTerrorEvent.eventid,
+      iyear: newTerrorEvent.iyear,
+      imonth: newTerrorEvent.imonth,
+      iday: newTerrorEvent.iday,
+      country_txt: newTerrorEvent.country_txt,
+      region_txt: newTerrorEvent.region_txt,
+      city: newTerrorEvent.city,
+      latitude: newTerrorEvent.latitude,
+      longitude: newTerrorEvent.longitude,
+      attacktype1_txt: newTerrorEvent.attacktype1_txt,
+      targtype1_txt: newTerrorEvent.targtype1_txt,
+      target1: newTerrorEvent.target1,
+      gname: newTerrorEvent.gname,
+      weaptype1_txt: newTerrorEvent.weaptype1_txt,
+      nkill: newTerrorEvent.nkill,
+      nwound: newTerrorEvent.nwound,
+      summary: newTerrorEvent.summary,
+    });
+    await nTerrorEvent.save();
+    return nTerrorEvent;
+  } catch (error) {
+    throw error;
   }
 };
