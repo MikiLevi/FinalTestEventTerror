@@ -6,60 +6,64 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
+import { AddEvent } from "../AddNew";
 
 export default function ElevateAppBar() {
   const navigate = useNavigate();
   return (
-    <React.Fragment>
-      <CssBaseline />
-      <AppBar
-        sx={{
-          backgroundColor: "#000000",
-          position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 1200,
-        }}
-      >
-        <Toolbar
+    <>
+      <React.Fragment>
+        <CssBaseline />
+        <AppBar
           sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
+            backgroundColor: "#000000",
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            zIndex: 1200,
           }}
         >
-          <Typography
-            variant="h6"
-            component="div"
+          <Toolbar
             sx={{
-              color: "white",
-              fontSize: "2.50vh",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
             }}
           >
-            Managing Terrorist Incidents🕊️
-          </Typography>
+            <Typography
+              variant="h6"
+              component="div"
+              sx={{
+                color: "white",
+                fontSize: "2.50vh",
+              }}
+            >
+              Managing Terrorist Incidents🕊️
+            </Typography>
 
-          <Box sx={{ display: "flex", alignItems: "center" }}>
-            <Button onClick={() => navigate("/")} color="inherit">
-              Home
-            </Button>
-            <Button onClick={() => navigate("/attack")} color="inherit">
-              Attack
-            </Button>
-            <Button onClick={() => navigate("/map")} color="inherit">
-              Map
-            </Button>
-            <Button onClick={() => navigate("/time")} color="inherit">
-              Time
-            </Button>
-            <Button onClick={() => navigate("/org")} color="inherit">
-              Organization
-            </Button>
-          </Box>
-        </Toolbar>
-      </AppBar>
-      <Toolbar />
-    </React.Fragment>
+            <Box sx={{ display: "flex", alignItems: "center" }}>
+              <Button onClick={() => navigate("/")} color="inherit">
+              <AddEvent />
+                Home
+              </Button>
+              <Button onClick={() => navigate("/attack")} color="inherit">
+                Attack
+              </Button>
+              <Button onClick={() => navigate("/map")} color="inherit">
+                Map
+              </Button>
+              <Button onClick={() => navigate("/time")} color="inherit">
+                Time
+              </Button>
+              <Button onClick={() => navigate("/org")} color="inherit">
+                Organization
+              </Button>
+            </Box>
+          </Toolbar>
+        </AppBar>
+        <Toolbar />
+      </React.Fragment>
+    </>
   );
 }
