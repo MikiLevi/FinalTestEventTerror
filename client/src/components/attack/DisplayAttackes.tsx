@@ -11,7 +11,7 @@ import { Bar } from "react-chartjs-2";
 import styles from "../../styles/DisplayAttackes.module.css";
 import { AttackData } from "../../interface/Eevent";
 import ElevateAppBar from "../app/AppBr";
-const baseurl = import.meta.env.VITE_BASE_URL
+// const baseurl = import.meta.env.VITE_BASE_URL
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip);
 

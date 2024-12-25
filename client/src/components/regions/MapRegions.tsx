@@ -4,7 +4,7 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import ElevateAppBar from "../app/AppBr";
 import { RegionData } from "../../interface/Eevent";
-const baseurl = import.meta.env.VITE_BASE_URL
+// const baseurl = import.meta.env.VITE_BASE_URL
 
 
 const icon = L.icon({
