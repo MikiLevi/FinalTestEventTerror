@@ -14,6 +14,7 @@ import "leaflet/dist/leaflet.css";
 import styles from "./DisplayOrganizations.module.css";
 import { OrganizationData, RegionData } from "../../interface/Eevent";
 import ElevateAppBar from "../app/AppBr";
+const baseurl = import.meta.env.VITE_BASE_URL;
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip);
 
@@ -36,7 +37,7 @@ const DisplayOrganizations: React.FC = () => {
   const fetchOrgData = async (region: string) => {
     try {
       const regionParam = region === "All" ? "" : encodeURIComponent(region);
-      const url = `https://testeventterror.onrender.com/api/relationships/top-groups?regionName${regionParam}&limit=${
+      const url = `${baseurl}/api/relationships/top-groups?regionName${regionParam}&limit=${
         showAll ? 100 : 5
       }`;
 
@@ -65,9 +66,7 @@ const DisplayOrganizations: React.FC = () => {
 
   const fetchRegionsData = async () => {
     try {
-      const response = await fetch(
-        "http://localhost:55555/api/analysis/highest-casualty-regions"
-      );
+      const response = await fetch("/api/analysis/highest-casualty-regions");
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -180,7 +179,7 @@ const DisplayOrganizations: React.FC = () => {
               <Bar options={chartOptions} data={chartData} />
             </div>
           ) : (
-            <div>No data available for the selected region</div>
+            <h4></h4>
           )}
         </div>
 
@@ -204,7 +203,7 @@ const DisplayOrganizations: React.FC = () => {
                   <Popup>
                     <div>
                       <h3>{region.region}</h3>
-                      <p>Click to see top organizations</p>
+                      <p>{region.count}</p>
                     </div>
                   </Popup>
                 </Marker>

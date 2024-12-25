@@ -31,7 +31,7 @@ export default function Home() {
             fontSize: "4rem", // הגדלת הגודל של הפונט
             color: "rgb(17, 230, 227)", // צבע טקסט סגול כהה
             textShadow:
-              "0 0 10px rgb(38, 196, 194), 0 0 20px rgba(226, 100, 22, 0.8), 0 0 30px rgba(236, 6, 79, 0.6), 0 0 40px rgba(211, 14, 250, 0.4)", // אפקט זוהר סגול כהה
+              " 0 0 20px rgba(50, 206, 198, 0.8), 0 0 30px rgba(93, 166, 222, 0.6)", // אפקט זוהר סגול כהה
           }}
         >
            💣🧨ברוכים הבאים לניהול אירועי הטרור

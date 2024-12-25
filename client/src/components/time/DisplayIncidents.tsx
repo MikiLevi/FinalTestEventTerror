@@ -11,6 +11,8 @@ import { Bar } from "react-chartjs-2";
 import style from "./DisplayTime.module.css";
 import ElevateAppBar from "../app/AppBr";
 
+const baseurl = import.meta.env.VITE_BASE_URL;
+
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip);
 
 interface TimeData {
@@ -29,8 +31,7 @@ const DisplayTime = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      let url =
-        "https://testeventterror.onrender.com/api/analysis/incident-trends";
+      let url = `http://localhost:55555/api/analysis/incident-trends`;
       switch (selectedFilter) {
         case "specific":
           url += `?startOfYear=${selectedYear}&endOfYear=${selectedYear}&startOfMonth=1&endOfMonth=12`;
@@ -50,11 +51,14 @@ const DisplayTime = () => {
 
       try {
         const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`Error fetching data: ${response.status}`);
+        }
         const data = await response.json();
-
         setTimeData(data);
       } catch (error) {
         console.error("Error:", error);
+        setTimeData([]); // במקרה של שגיאה, הצג רשימה ריקה
       }
     };
 
@@ -77,10 +81,10 @@ const DisplayTime = () => {
   };
 
   const data = {
-    labels: timeData.map((item) => `${item.year}/${item.month}`),
+    labels: Array.isArray(timeData) ? timeData.map((item) => `${item.year}/${item.month}`) : [],
     datasets: [
       {
-        data: timeData.map((item) => item.totalEvents),
+        data: Array.isArray(timeData) ? timeData.map((item) => item.totalEvents) : [],
         backgroundColor: "rgba(53, 162, 235, 0.8)",
         borderColor: "rgb(53, 162, 235)",
         borderWidth: 1,

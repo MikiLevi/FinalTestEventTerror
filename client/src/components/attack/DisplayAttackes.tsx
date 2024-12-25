@@ -11,6 +11,7 @@ import { Bar } from "react-chartjs-2";
 import styles from "../../styles/DisplayAttackes.module.css";
 import { AttackData } from "../../interface/Eevent";
 import ElevateAppBar from "../app/AppBr";
+const baseurl = import.meta.env.VITE_BASE_URL
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip);
 
@@ -46,7 +47,6 @@ export default function DisplayAttackes() {
       }
     });
   };
-  console.log(attackData);
 
   const filterData = attackData.filter((attack) =>
     selectedTypes.includes(attack._id)

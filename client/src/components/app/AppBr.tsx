@@ -41,7 +41,7 @@ export default function ElevateAppBar() {
           </Typography>
 
           <Box sx={{ display: "flex", alignItems: "center" }}>
-            <Button onClick={() => navigate("/home")} color="inherit">
+            <Button onClick={() => navigate("/")} color="inherit">
               Home
             </Button>
             <Button onClick={() => navigate("/attack")} color="inherit">

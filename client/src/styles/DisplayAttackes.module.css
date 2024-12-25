@@ -1,11 +1,3 @@
-body {
-  background-image: url("https://did.li/attack1"); /* הכנס את הנתיב לתמונה שלך */
-  background-size: cover; /* התמונה תכסה את כל המסך */
-  background-position: center; /* מיקום התמונה במרכז */
-  background-attachment: fixed; /* התמונה תישאר קבועה בזמן גלילה */
-  position: relative;
-}
-
 .chartWrapper {
   display: flex;
   justify-content: center;
@@ -21,7 +13,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  /* background: rgba(255, 255, 255, 0.); רקע עם שקיפות נמוכה (0.1) */
+  background: rgba(21, 190, 224, 0);
   z-index: -1;
 }
 
