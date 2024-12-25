@@ -64,7 +64,7 @@ const MapComponent: React.FC = () => {
           <Marker key={index} position={[region.lat, region.long]} icon={icon}>
             <Popup>
               <div>
-                <p><b>Let:</b> {region.region}</p>
+                <p><b>Region:</b> {region.region}</p>
                 <p><b>Long:</b> {region.long}</p>
               </div>
             </Popup>
