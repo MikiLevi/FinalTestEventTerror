@@ -11,7 +11,7 @@ import { Bar } from "react-chartjs-2";
 import style from "./DisplayTime.module.css";
 import ElevateAppBar from "../app/AppBr";
 
-// const baseurl = import.meta.env.VITE_BASE_URL;
+const baseurl = import.meta.env.VITE_BASE_URL;
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip);
 
@@ -31,7 +31,7 @@ const DisplayTime = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      let url = `http://localhost:55555/api/analysis/incident-trends`;
+      let url = `${baseurl}/api/analysis/incident-trends`;
       switch (selectedFilter) {
         case "specific":
           url += `?startOfYear=${selectedYear}&endOfYear=${selectedYear}&startOfMonth=1&endOfMonth=12`;

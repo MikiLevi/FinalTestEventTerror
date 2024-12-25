@@ -4,7 +4,7 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import ElevateAppBar from "../app/AppBr";
 import { RegionData } from "../../interface/Eevent";
-// const baseurl = import.meta.env.VITE_BASE_URL
+const baseurl = import.meta.env.VITE_BASE_URL
 
 
 const icon = L.icon({
@@ -23,7 +23,7 @@ const MapComponent: React.FC = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "http://localhost:55555/api/analysis/highest-casualty-regions/"
+          `${baseurl}/api/analysis/highest-casualty-regions/`
         );
         const data = await response.json();
         const validData = data.filter(
